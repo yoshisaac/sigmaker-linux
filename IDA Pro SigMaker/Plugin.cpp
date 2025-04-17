@@ -7,7 +7,7 @@ plugin_t PLUGIN = {
 	init,
 	nullptr,
 	nullptr,
-	PLUGIN_NAME " v" PLUGIN_VERSION " for IDA Pro by A200K",
+	PLUGIN_NAME " v" PLUGIN_VERSION " for IDA Pro by A200K(main dev) and Yoshk4e(Linux Support)",
 	"Select location in disassembly and press CTRL+ALT+S to open menu",
 	PLUGIN_NAME,
 	"Ctrl-Alt-S"
