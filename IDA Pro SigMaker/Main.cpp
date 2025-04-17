@@ -374,13 +374,13 @@ static void PrintXRefSignaturesForEA(
   }
 
   auto topLength = std::min(topCount, xrefSignatures.size());
-  msg("Top %" PRIu64 "Signatures out of" PRIu64 "xrefs for %" PRIx64 ":\n",
-      topLength, xrefSignatures.size(), ea);
+  msg("Top %" PRIu64 " Signatures out of %" PRIu64 " xrefs for %" PRIx64 ":\n",
+      (uint64_t)topLength, (uint64_t)xrefSignatures.size(), (uint64_t)ea);
   for (size_t i = 0; i < topLength; i++) {
     const auto &[originAddress, signature] = xrefSignatures[i];
     const auto signatureStr = FormatSignature(signature, sigType);
-    msg("XREF Signature #%i @ PRIx64: %s\n", i + 1, originAddress,
-        signatureStr.c_str());
+    msg("XREF Signature #%i @ %" PRIx64 ": %s\n", i + 1,
+        (uint64_t)originAddress, signatureStr.c_str());
 
     // Copy first signature only
     if (i == 0) {
