@@ -39,20 +39,20 @@ ___
 ___
 ### Finding XREFs
 Generating code Signatures by data or code xrefs and finding the shortest ones is also supported:
-![](https://i.imgur.com/P0VRIFQ.png)
+![](https://i.imgur.com/GqLH2dF.png)
 
 ___
 ### Signature searching
 Searching for Signatures works for supported formats:
 
-![](https://i.imgur.com/lD4Zfwb.png)
+![](https://i.imgur.com/rLR1qmt.png)
 
 Just enter any string containing your Signature, it will automatically try to figure out what kind of Signature format is being used:
 
-![](https://i.imgur.com/oWMs7LN.png)
+![](https://i.imgur.com/gMQpYTP.png)
 
 Currently, all output formats you can generate are supported.
 
 Match(es) of your signature will be printed to console:
 
-![](https://i.imgur.com/Pe4REkX.png)
+![](https://i.imgur.com/JZjgz4a.png)
