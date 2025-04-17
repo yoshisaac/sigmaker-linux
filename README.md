@@ -25,7 +25,7 @@ In disassembly view, select a line you want to generate a signature for, and pre
 ![](https://i.imgur.com/Cpz50AR.png)
 
 The generated signature will be printed to the output console, as well as copied to the clipboard:
-![](https://i.imgur.com/BYG4mz8.png)
+![](https://i.imgur.com/4yYEbb3.png)
 
 ___
 
