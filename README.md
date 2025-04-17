@@ -22,7 +22,7 @@ Drop into plugins folder of your IDA installation.
 ## Usage
 In disassembly view, select a line you want to generate a signature for, and press 
 **CTRL+ALT+S**
-![](https://imgur.com/Cpz50AR.png)
+![](https://i.imgur.com/Cpz50AR.png)
 
 The generated signature will be printed to the output console, as well as copied to the clipboard:
 ![](https://i.imgur.com/5xU091M.png)
