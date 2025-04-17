@@ -1,50 +1,53 @@
 #include "Utils.h"
+#include <cstdlib>
+#include <cstring>
+#include <unistd.h>
 
-bool SetClipboardText( std::string_view text ) {
-	if( text.empty( ) ) {
-		return false;
-	}
+bool SetClipboardText(std::string_view text) {
+  // Try Wayland first (wl-copy)
+  if (system("which wl-copy > /dev/null 2>&1") == 0) {
+    FILE *pipe = popen("wl-copy", "w");
+    if (pipe) {
+      size_t written = fwrite(text.data(), 1, text.size(), pipe);
+      pclose(pipe);
+      if (written == text.size())
+        return true;
+    }
+  }
 
-	if( OpenClipboard( NULL ) == false || EmptyClipboard( ) == false ) {
-		return false;
-	}
+  // Fallback to X11 (xclip)
+  if (system("which xclip > /dev/null 2>&1") == 0) {
+    const std::string cmd = "printf '%s' \"" + std::string(text) +
+                            "\" | "
+                            "xclip -selection clipboard -in 2>/dev/null";
 
-	auto memoryHandle = GlobalAlloc( GMEM_MOVEABLE | GMEM_ZEROINIT, text.size( ) + 1 );
-	if( memoryHandle == nullptr ) {
-		CloseClipboard( );
-		return false;
-	}
+    if (system(cmd.c_str()) == 0)
+      return true;
+  }
 
-	auto textMem = reinterpret_cast<char*>( GlobalLock( memoryHandle ) );
-	if( textMem == nullptr ) {
-		GlobalFree( memoryHandle );
-		CloseClipboard( );
-		return false;
-	}
+  // Final fallback to temporary file method
+  if (system("which xsel > /dev/null 2>&1") == 0) {
+    const std::string cmd = "printf '%s' \"" + std::string(text) +
+                            "\" | "
+                            "xsel --clipboard --input 2>/dev/null";
 
-	memcpy( textMem, text.data( ), text.size( ) );
-	GlobalUnlock( memoryHandle );
-	auto handle = SetClipboardData( CF_TEXT, memoryHandle );
-	GlobalFree( memoryHandle );
-	CloseClipboard( );
+    return system(cmd.c_str()) == 0;
+  }
 
-	if( handle == nullptr ) {
-		return false;
-	}
-
-	return true;
+  return false;
 }
 
-bool GetRegexMatches( std::string string, std::regex regex, std::vector<std::string>& matches ) {
-	std::sregex_iterator iter( string.begin( ), string.end( ), regex );
-	std::sregex_iterator end;
+bool GetRegexMatches(std::string string, std::regex regex,
+                     std::vector<std::string> &matches) {
+  std::sregex_iterator iter(string.begin(), string.end(), regex);
+  std::sregex_iterator end;
 
-	matches.clear( );
+  matches.clear();
 
-	size_t i = 0;
-	while( iter != end ) {
-		matches.push_back( iter->str( ) );
-		++iter;
-	}
-	return !matches.empty( );
+  size_t i = 0;
+  while (iter != end) {
+    matches.push_back(iter->str());
+    ++iter;
+  }
+  return !matches.empty();
 }
