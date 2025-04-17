@@ -1,13 +1,23 @@
-# IDA Pro/Any Sigmaker for 9.X
+# IDA Pro/Any Sigmaker for 9.X (LINUX/GNU)
 Signature Maker Plugin for IDA Pro/Any >= 9.X
 
+- can probably be ported to macOS too but its not something i would bother doing when i don't even have a one
+## Building requirements
+- CMake 3.16+
+- A brain
+- Change the SDK paths in plugin.h to match yours ( I'm too lazy to make it work on any pc :3 )
+## How to Build??
+- open a terminal in your project root and paste this command ( you can ignore the warnings or suppress it)
+```sh
+mkdir -p build && cd build   && cmake -DCMAKE_CXX_STANDARD=23 -S .. -B .   && cmake --build .
+```
 ## Requirements
 - IDA Pro/Any Plugin SDK 9.X, Only tested for 9.X, unsure if older versions work
 
 ## Installation
 Drop into plugins folder of your IDA installation.
 
-`%AppData%\Hex-Rays\IDA Pro\plugins`
+`path\to\ida\plugins`
 
 ## Usage
 In disassembly view, select a line you want to generate a signature for, and press 
