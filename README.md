@@ -2,6 +2,7 @@
 Signature Maker Plugin for IDA Pro/Any >= 9.X
 
 - can probably be ported to macOS too but its not something i would bother doing when i don't even have a one
+- Note: The SDK folder just contains a placeholder and NOT the real ida SDK you get it yourself after after purchasing ida 
 ## Building requirements
 - CMake 3.16+
 - A brain
